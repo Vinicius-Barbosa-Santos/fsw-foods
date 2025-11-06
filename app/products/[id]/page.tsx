@@ -38,12 +38,14 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
   });
 
   return (
-    <div>
-      {/* IMAGEM */}
-      <ProductImage product={product} />
+    <div className="mx-auto max-w-6xl px-5 py-6">
+      <div className="md:grid md:grid-cols-2 md:gap-6">
+        {/* IMAGEM */}
+        <ProductImage product={product} />
 
-      {/* TITULO E PREÇO */}
-      <ProductDetails product={product} complementaryProducts={juices} />
+        {/* TITULO E PREÇO */}
+        <ProductDetails product={product} complementaryProducts={juices} />
+      </div>
     </div>
   );
 };

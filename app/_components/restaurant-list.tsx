@@ -15,11 +15,12 @@ const RestaurantList = async () => {
   console.log(userFavoriteRestaurants);
 
   return (
-    <div className="flex gap-4 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
+    <div className="grid grid-cols-2 gap-6 px-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {restaurants.map((restaurant) => (
         <RestaurantItem
           key={restaurant.id}
           restaurant={restaurant}
+          className="w-full md:min-w-0 md:max-w-none"
           userId={session?.user?.id}
           userFavoriteRestaurants={userFavoriteRestaurants}
         />

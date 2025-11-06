@@ -65,7 +65,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
   });
 
   return (
-    <div>
+    <div className="mx-auto max-w-6xl px-5 py-6">
       <RestaurantImage
         restaurant={restaurant}
         userFavoriteRestaurants={userFavoriteRestaurants}
@@ -95,7 +95,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
         <DeliveryInfo restaurant={restaurant} />
       </div>
 
-      <div className="mt-3 flex gap-4 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
+      <div className="mt-3 flex flex-wrap gap-4 px-5">
         {restaurant.categories.map((category) => (
           <div
             key={category.id}

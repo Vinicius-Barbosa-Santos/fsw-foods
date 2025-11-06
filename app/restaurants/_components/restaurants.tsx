@@ -34,18 +34,24 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
   return (
     <>
       <Header />
-      <div className="px-5 py-6">
+      <div className="mx-auto max-w-6xl px-5 py-6">
         <h2 className="mb-6 text-lg font-semibold">Restaurantes Encontrados</h2>
-        <div className="flex w-full flex-col gap-6">
-          {restaurants.map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              className="min-w-full max-w-full"
-              userFavoriteRestaurants={userFavoriteRestaurants}
-            />
-          ))}
-        </div>
+        {restaurants.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Nenhum restaurante encontrado para &quot;{searchFor}&quot;.
+          </p>
+        ) : (
+          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {restaurants.map((restaurant) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                className="w-full md:min-w-0 md:max-w-none"
+                userFavoriteRestaurants={userFavoriteRestaurants}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
