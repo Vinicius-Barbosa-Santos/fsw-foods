@@ -15,22 +15,25 @@ interface RestaurantItemProps {
   restaurant: Restaurant;
   className?: string;
   userFavoriteRestaurants: UserFavoriteRestaurant[];
+  userId?: string;
 }
 
 const RestaurantItem = ({
   restaurant,
   className,
   userFavoriteRestaurants,
+  userId,
 }: RestaurantItemProps) => {
   const { data } = useSession();
+  const loggedUserId = userId ?? data?.user.id;
   const isFavorite = userFavoriteRestaurants.some(
     (fav) => fav.restaurantId === restaurant.id,
   );
 
   const handleFavoriteClick = async () => {
-    if (!data?.user.id) return;
+    if (!loggedUserId) return;
     try {
-      await toggleFavoriteRestaurant(data?.user.id, restaurant.id);
+      await toggleFavoriteRestaurant(loggedUserId, restaurant.id);
       toast.success(
         isFavorite
           ? "Restaurante removido dos favoritos."
@@ -60,7 +63,7 @@ const RestaurantItem = ({
             <span className="text-xs font-semibold">5.0</span>
           </div>
 
-          {data?.user.id && (
+          {loggedUserId && (
             <Button
               size="icon"
               className={`absolute right-2 top-2 h-7 w-7 rounded-full bg-gray-700 ${isFavorite && "bg-primary hover:bg-gray-700"}`}
