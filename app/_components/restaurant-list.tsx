@@ -15,16 +15,18 @@ const RestaurantList = async () => {
   console.log(userFavoriteRestaurants);
 
   return (
-    <div className="grid grid-cols-2 gap-6 px-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      {restaurants.map((restaurant) => (
-        <RestaurantItem
-          key={restaurant.id}
-          restaurant={restaurant}
-          className="w-full md:min-w-0 md:max-w-none"
-          userId={session?.user?.id}
-          userFavoriteRestaurants={userFavoriteRestaurants}
-        />
-      ))}
+    <div className="mx-auto max-w-6xl">
+      <div className="flex w-full flex-col gap-6 px-5 md:grid md:grid-cols-3 md:gap-10 md:px-5">
+        {restaurants.map((restaurant) => (
+          <RestaurantItem
+            key={restaurant.id}
+            restaurant={restaurant}
+            className="min-w-full max-w-full md:w-full md:min-w-0 md:max-w-none"
+            userId={session?.user?.id}
+            userFavoriteRestaurants={userFavoriteRestaurants}
+          />
+        ))}
+      </div>
     </div>
   );
 };
